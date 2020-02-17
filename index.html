@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Speedline Project</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+  <script src="https://kit.fontawesome.com/368963f9d5.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
+  <script src="Map.js"></script>
+  <script src="mapFunctions.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDG_hezIfyjIwGhpU2PznWmA8W-mX7sgZU&callback=init"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+  <div class="component-header">
+    <i class="component-header-icon fas fa-map-marked"></i>
+    <span class="component-header-text-sibling">
+      Map Data
+    </span>
+  </div>
+  <div class="component-body col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="row">
+      <div class="col-lg-2 col-md-4 col-sm-2 col-xs-2">
+        <form style="height: 100%;">
+          <select multiple id="citySelect" class="form-control" style="height: 100%;">
+            
+          </select>
+        </form>
+      </div>
+      <div class="col-lg-10 col-md-6 col-sm-10 col-xs-10">
+        <div id="map">
+          <div class="maprouter">
+            <div class="gmap_canvas">
+  
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    
+    </div>
+    Press (CTRL + Click) To Select Multiple
+  </div>
+</body>
+</html>

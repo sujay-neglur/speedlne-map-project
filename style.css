@@ -1,0 +1,55 @@
+#map {
+  height: 400px;
+  width: 50%;
+  
+  margin-left: 10%;
+  /* text-align: right; */
+}
+
+.mapouter {
+  position: relative;
+  text-align: right;
+  height: 500px;
+  width: 600px;
+}
+
+.gmap_canvas {
+  overflow: hidden;
+  background: none !important;
+  height: 500px;
+  width: 600px;
+}
+
+.component-header {
+  border-bottom: #0378ad 1px solid;
+  height: 40px;
+  color: #404040;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-wrap: none;
+}
+
+.component-body {
+  height: calc(100% - 40px);
+  width: 100%;
+  overflow: auto;
+  min-width: 90px;
+  padding-top: 8px;
+}
+
+.component-header-icon {
+  font-size: 20px !important;
+  width: 40px;
+  height: 100%;
+  padding: 10px;
+  position: relative;
+}
+
+.component-header-text-sibling {
+  font-size: 16px;
+  height: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
