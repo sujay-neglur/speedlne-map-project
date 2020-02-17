@@ -1,8 +1,19 @@
 function init() {
+  /**
+   * Creating Maps object
+   */
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
     center: { lat:53.7267, lng: -127.6476 }
   });
+
+  /**
+   * Defining the locations.
+   * In production these locations would be retrieved from a database.
+   * The user will add the locations to be displayed on the map.
+   * The Geocoding API will return the latitude and longitude of a city.
+   * Depending on whether Environment Canada API is used, the cityCode will be present.
+   */
   const locations = [
     {id:Math.random(), lat: 58.4374, lng: -129.9994, name: "Dease", cityCode: "bc-14" },
     {id:Math.random(), lat: 58.805, lng: -122.6972, name: "Fort Nelson", cityCode: "bc-83" },
@@ -12,17 +23,26 @@ function init() {
     {id:Math.random(), lat: 50.9981, lng: -118.1957, name: "Revelstoke", cityCode: "bc-65" },
     {id:Math.random(), lat: 49.0955, lng: -116.5135, name: "Creston", cityCode: "bc-26" }
   ];
+
   locations.forEach(location => {
+    /**
+     * Creating a Marker for every location on the map
+     */
     const marker = new google.maps.Marker({
       position: {lat:location.lat, lng:location.lng},
       map
     });
-    marker.id = location.id;
+    /**
+     * Create the infoWindow Object.
+     * The content for the infowindow depends on the API service used to get the weather information.
+     */
     const infoWindow = new google.maps.InfoWindow({
       content: getContentString(location.cityCode, "large")
     });
-    infoWindow.marker = marker;
-    marker.infoWindow = infoWindow;
+    
+    /**
+     * Register the infoWindow to be activated on the Marker click.
+     */
     marker.addListener("click", () => infoWindow.open(map, marker));
   });
 
