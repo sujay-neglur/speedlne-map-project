@@ -8,10 +8,10 @@
   <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
   <script src="https://kit.fontawesome.com/368963f9d5.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
-  <script src="Map.js"></script>
   <script src="mapFunctions.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDG_hezIfyjIwGhpU2PznWmA8W-mX7sgZU&callback=init"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
 </head>
 <body>
   <div class="component-header">
@@ -23,11 +23,12 @@
   <div class="component-body col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div class="row">
       <div class="col-lg-2 col-md-4 col-sm-2 col-xs-2">
-        <form style="height: 100%;">
-          <select multiple id="citySelect" class="form-control" style="height: 100%;">
-            
-          </select>
-        </form>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Mushup for Northcoast Pizza</li>
+          <li class="list-group-item">Used Google Maps to embed the map on the screen</li>
+          <li class="list-group-item">Used Environment Canada iFrame to show the weather data on click</li>
+          <li class="list-group-item">Click on the desired location to view the weather data</li>
+        </ul>  
       </div>
       <div class="col-lg-10 col-md-6 col-sm-10 col-xs-10">
         <div id="map">
@@ -38,11 +39,7 @@
           </div>
         </div>
       </div>
-
-
-    
     </div>
-    Press (CTRL + Click) To Select Multiple
   </div>
 </body>
 </html>

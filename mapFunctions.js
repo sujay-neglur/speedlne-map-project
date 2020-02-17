@@ -1,5 +1,8 @@
 function init() {
-  const map = new ScreenMap(53.7267,-127.6476);
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 4,
+    center: { lat:53.7267, lng: -127.6476 }
+  });
   const locations = [
     {id:Math.random(), lat: 58.4374, lng: -129.9994, name: "Dease", cityCode: "bc-14" },
     {id:Math.random(), lat: 58.805, lng: -122.6972, name: "Fort Nelson", cityCode: "bc-83" },
@@ -9,71 +12,21 @@ function init() {
     {id:Math.random(), lat: 50.9981, lng: -118.1957, name: "Revelstoke", cityCode: "bc-65" },
     {id:Math.random(), lat: 49.0955, lng: -116.5135, name: "Creston", cityCode: "bc-26" }
   ];
-  map.addLocations(locations);
-  addOptionsToSelect(map.getLocations(), map);
   locations.forEach(location => {
-    geocdeMock(location.lat, location.lng)
-    .then(function(result){
-      const marker = new google.maps.Marker({
-        position: result.data,
-        map: map.getMapInstance()
-      });
-      map.addMarker(location.id, marker);
-      infoWindow = new google.maps.InfoWindow({
-        content: getContentString(location.cityCode, "large")
-      });
-      /**
-       * Add location to info window for future use
-       */
-      infoWindow.location = location.name;
-      console.log(infoWindow.location)
-      google.maps.event.addListener(infoWindow, "closeclick", function(){
-
-        // document.getElementById(infoWindow.location).selected = false;
-        console.log(infoWindow.location)
-      })
-      marker.addListener("click", () => {
-        infoWindow.open(map, marker);
-      });
-      map.addInfoWindow(location.id,infoWindow);
-    })
-  })
-
-}
-
-function addOptionsToSelect(locations, map){
-  const select = document.getElementById("citySelect");
-  locations.forEach(location => {
-    const option = document.createElement("option");
-    option.id= location.id;
-    option.innerHTML = location.name;
-    option.onclick = () => handleOptionOnClick(map,option.id);
-    select.appendChild(option)
-  })
-}
-
-function geocdeMock(lat, lng) {
-  return Promise.resolve({
-    data: {
-      lat,
-      lng
-    }
+    const marker = new google.maps.Marker({
+      position: {lat:location.lat, lng:location.lng},
+      map
+    });
+    marker.id = location.id;
+    const infoWindow = new google.maps.InfoWindow({
+      content: getContentString(location.cityCode, "large")
+    });
+    infoWindow.marker = marker;
+    marker.infoWindow = infoWindow;
+    marker.addListener("click", () => infoWindow.open(map, marker));
   });
-}
 
-function handleOptionOnClick(map,id){
-  const selectedCities = map.getSelectedCities();
-  if(!selectedCities.includes(id)){
-    map.addCity(id);
-    map.getMarker(id).infoWindow.open(map.getMapInstance(), map.getMarker(id));
-  }
-  else {
-    map.removeCity(id);
-    map.getMarker(id).infoWindow.close();
-    document.getElementById(id).selected = false;
-  }
 }
-
 function getContentString(cityCode, size) {
   let width = "200px",
     height = "150px";
